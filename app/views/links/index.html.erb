@@ -1,0 +1,11 @@
+
+
+<% if current_user %>
+      <h3><%= link_to "Sign Out", '/logout', method: :delete %></h3>
+      <% @links.each do |link| %>
+          <h3>Title: <%=  link.title %> </h3>
+          <h3>URL: <%=  link.url %> </h3>
+    <% end %>
+<% else  %>
+    <h3><%= link_to "Please login", "/login" %> <%= link_to "or sign up", new_user_path %></h3>
+<% end %>
