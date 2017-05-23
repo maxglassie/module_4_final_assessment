@@ -1,5 +1,10 @@
 class Api::V1::LinksController < ApplicationController
 
+  def index
+    @links = Link.all
+    render json: @links
+  end
+
   def update
     @link = Link.find(params[:id])
     if @link.update_attributes(link_params)
