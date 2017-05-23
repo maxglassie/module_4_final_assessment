@@ -12,7 +12,7 @@ RSpec.describe "User can visit the index page", :js => :true do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
   end
 
-  xscenario "and see a list of existing links" do
+  scenario "and see a list of existing links" do
     visit "/"
 
     within('#link-form') do
@@ -22,7 +22,7 @@ RSpec.describe "User can visit the index page", :js => :true do
     end
   end
 
-  scenario "and submit a new link and title" do
+  xscenario "and submit a new link and title" do
     visit "/"
 
     within('#link-form') do

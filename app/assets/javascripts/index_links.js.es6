@@ -1,4 +1,3 @@
-const $ = require('jquery');
 const API = 'http://localhost:3000/'
 
 $(document).ready(function() {
@@ -10,18 +9,25 @@ function getLinks() {
     url: '/api/v1/links',
     method: 'GET'
   }).done(function(data) {
-    debugger;
-    // data.forEach(e) {
-    //   prependLink(e)
-    // };
-  })
+    data.forEach(function(e) {
+      prependLink(e);
+    });
+  });
 };
 
-function prependLinks(data) {
+function prependLink(data) {
   $('#tb-links').prepend(`<tr class='link-row'>
     <td id='link-title'> Title: ${data.title} </td>
     <td id='link-url'> URL: ${data.url} </td>
     <td id='link-read'> Read?: ${data.read} </td>
-    </tr>
-    `)
+    </tr>`);
 }
+
+$.ajax({
+    url: '/api/v1/links',
+    method: 'GET'
+  }).done(function(data) {
+    data.forEach(function(e) {
+      console.log(e)
+    });
+  });
