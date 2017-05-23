@@ -2,7 +2,7 @@ class LinksController < ApplicationController
 
   def index
     if current_user
-      @links = Link.all
+      @link = Link.new
     else
       redirect_to '/login'
     end
