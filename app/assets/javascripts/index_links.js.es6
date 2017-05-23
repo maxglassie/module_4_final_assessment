@@ -12,6 +12,8 @@ function getLinks() {
     data.forEach(function(e) {
       prependLink(e);
     });
+  }).fail(function(error){
+    console.error(error);
   });
 };
 
