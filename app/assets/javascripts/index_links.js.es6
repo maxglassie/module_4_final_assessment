@@ -22,12 +22,3 @@ function prependLink(data) {
     <td id='link-read'> Read?: ${data.read} </td>
     </tr>`);
 }
-
-$.ajax({
-    url: '/api/v1/links',
-    method: 'GET'
-  }).done(function(data) {
-    data.forEach(function(e) {
-      console.log(e)
-    });
-  });
