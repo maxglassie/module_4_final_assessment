@@ -2,13 +2,21 @@
 
 <% if current_user %>
       <h3><%= link_to "Sign Out", '/logout', method: :delete %></h3>
-      <div id="link-form">
-        <%= form_for :link do |f| %>
-            URL: <%= f.text_field :url %>
-            Title: <%= f.text_field :title %>
-            <%= f.submit %>
-        <% end %>
-      </div>
+        <form id="link-create">
+          <fieldset>
+              <div class="url-field">
+                    <label for="url">URL: </label>
+                    <input id="link-url" type="text" name="URL"><br>
+              </div>
+              <div class="title-field">
+                    <label for="title">Title:</label>
+                    <input id="link-title" type="text" name="title"><br>
+              </div>
+              <div class="field">
+                <button id="link-submit" type="submit" value="Submit Link">Add Link</button>
+              </div>
+          </fieldset>
+      </form>
 
       <div id="links-table">
         <table>

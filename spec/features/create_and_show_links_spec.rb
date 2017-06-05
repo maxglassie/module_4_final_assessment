@@ -16,9 +16,14 @@ RSpec.describe "User can visit the index page", :js => :true do
     visit "/"
 
     within('#link-create') do
-        fill_in "link-url", with: "https://www.turing.io/"
-        fill_in "link-title", with: "Turing"
+        fill_in "link-url", with: "https://www.google.com"
+        fill_in "link-title", with: "Google"
         click_on "Add Link"
     end
+
+    expect(current_path).to eq('/')
+
+    expect(page).to have_content("https://www.google.com")
+    expect(page).to have_content("Google")
   end
 end
