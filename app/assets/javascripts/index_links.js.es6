@@ -36,6 +36,11 @@ function prependLink(data) {
     <td id='link-title'> Title: ${data.title} </td>
     <td id='link-url'> URL: ${data.url} </td>
     <td id='link-read'> Read?: ${data.read} </td>
+    <td id='link-edit'>
+        <form action="http://localhost:3000/links/${data.id}/edit">
+            <input type="submit" value="Edit">
+        </form>
+     </td>
     </tr>`);
 }
 
@@ -44,9 +49,13 @@ function saveLink(url, title) {
   $.post('http://localhost:3000/api/v1/links', newLink)
   .then((data) => {
     prependLink(data)
+    clearErrors();
+    clearInput();
   })
   .fail((xhr, status, error) => {
-    raiseErrors(xhr, status, error)
+    clearErrors();
+    clearInput();
+    raiseErrors(xhr, status, error);
   })
 }
 
@@ -60,4 +69,13 @@ function raiseErrors(xhr, status, error) {
   if (xhr.responseJSON[0] == "Url is not a valid HTTP URL") {
     $('.url-field').append(`<div class="validation-error"><p> Invalid URL </p> </div>`)
   }
+}
+
+function clearErrors() {
+  $('.validation-error').empty();
+}
+
+function clearInput() {
+  $('#link-url').val("");
+  $('#link-title').val("");
 }

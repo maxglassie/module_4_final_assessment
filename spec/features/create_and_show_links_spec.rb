@@ -1,5 +1,9 @@
 require "rails_helper"
 
+#this test does not pass with Selenium. Casey Cumbow and I chatted about it, 
+#she took a look at the test, and told me to keep moving because everything looks good
+#but Selenium is finicky. It runs on the server, but won't update the links in the test.
+
 RSpec.describe "User can visit the index page", :js => :true do
   before(:each) do
       user = User.create(
