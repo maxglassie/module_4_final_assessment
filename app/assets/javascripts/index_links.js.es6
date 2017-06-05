@@ -57,4 +57,7 @@ function raiseErrors(xhr, status, error) {
   if (xhr.responseJSON[0] == "Title can't be blank") {
     $('.title-field').append(`<div class="validation-error"><p> ${xhr.responseJSON[0]} </p> </div>`)
   }
+  if (xhr.responseJSON[0] == "Url is not a valid HTTP URL") {
+    $('.url-field').append(`<div class="validation-error"><p> Invalid URL </p> </div>`)
+  }
 }
