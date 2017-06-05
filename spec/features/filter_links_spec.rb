@@ -1,3 +1,7 @@
+require 'rails_helper'
+
+#Selenium is not working properly. It works in the browser.
+#I discussed this with Casey and she said keep working.
 RSpec.describe "User can visit the index page", :js => :true do
   before(:each) do
       user = User.create(
@@ -6,6 +10,7 @@ RSpec.describe "User can visit the index page", :js => :true do
                          )
 
       link1 = Link.create(url:"https://turing.io", title:"Turing")
+      link2 = Link.create(url:"https://www.google.com", title:"Google")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
   end
@@ -14,13 +19,13 @@ RSpec.describe "User can visit the index page", :js => :true do
     visit "/"
 
     within('#filter-box') do
-        fill_in "link-url", with: "https://www.google.com"
-        fill_in "link-title", with: "Google"
-        click_on("Add Link")
+        fill_in "input-field", with: "g"
     end
-
-    expect(current_path).to eq('/')
 
     expect(page).to have_content("https://www.google.com")
     expect(page).to have_content("Google")
+
+    expect(page).to_not have_content("https://www.turing.io")
+    expect(page).to_not have_content("Turing")
   end
+end
