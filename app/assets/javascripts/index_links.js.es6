@@ -14,7 +14,6 @@ $(document).ready(function() {
     e.preventDefault()
     let linkURL = $('#link-url').val();
     let linkTitle = $('#link-title').val();
-    debugger;
     saveLink(linkURL, linkTitle)
   });
 });
@@ -42,4 +41,8 @@ function prependLink(data) {
 
 function saveLink(url, title) {
   let newLink = new Link(url, title)
+  $.post(`${API} + /api/v1/links`, newLink)
+  .then((data) => {
+    debugger;
+  })
 }
