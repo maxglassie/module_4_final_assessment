@@ -12,6 +12,7 @@ $(document).ready(function() {
 
   $('#link-submit').on('click', (e) => {
     e.preventDefault()
+    debugger;
     let linkURL = $('#link-url').val();
     let linkTitle = $('#link-title').val();
     saveLink(linkURL, linkTitle)
@@ -41,8 +42,8 @@ function prependLink(data) {
 
 function saveLink(url, title) {
   let newLink = new Link(url, title)
-  $.post(`${API} + /api/v1/links`, newLink)
+  $.post('http://localhost:3000/api/v1/links', newLink)
   .then((data) => {
-    debugger;
+    prependLink(data)
   })
 }
