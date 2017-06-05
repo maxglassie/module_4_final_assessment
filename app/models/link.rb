@@ -1,3 +1,4 @@
 class Link < ActiveRecord::Base
-  validates :url, :title, presence: :true
+  validates :url, presence: :true, http_url: :true
+  validates :title, presence: :true
 end

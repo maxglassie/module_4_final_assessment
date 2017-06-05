@@ -52,7 +52,7 @@ function saveLink(url, title) {
 
 function raiseErrors(xhr, status, error) {
   if (xhr.responseJSON[0] == "Url can't be blank") {
-    $('.title-field').append(`<div class="validation-error"><p> ${xhr.responseJSON[0]} </p> </div>`)
+    $('.url-field').append(`<div class="validation-error"><p> ${xhr.responseJSON[0]} </p> </div>`)
   }
   if (xhr.responseJSON[0] == "Title can't be blank") {
     $('.title-field').append(`<div class="validation-error"><p> ${xhr.responseJSON[0]} </p> </div>`)
