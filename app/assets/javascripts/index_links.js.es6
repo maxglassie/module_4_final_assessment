@@ -32,13 +32,23 @@ function getLinks() {
 };
 
 function prependLink(data) {
-  $('#tb-links').prepend(`<tr class='link-row'>
+  $('#tb-links').prepend(`<tr class='link-row' data-id='${data.id}'>
     <td id='link-title'> Title: ${data.title} </td>
     <td id='link-url'> URL: ${data.url} </td>
     <td id='link-read'> Read?: ${data.read} </td>
     <td id='link-edit'>
         <form action="http://localhost:3000/links/${data.id}/edit">
             <input type="submit" value="Edit">
+        </form>
+     </td>
+    <td id='mark-read'>
+        <form class="mark-as-read" action="http://localhost:3000/api/v1/links/${data.id}">
+            <input type="submit" value="Mark As Read">
+        </form>
+     </td>
+      <td id='mark-unread'>
+        <form class="mark-as-unread" action="http://localhost:3000/api/v1/links/${data.id}">
+            <input type="submit" value="Mark As Unread">
         </form>
      </td>
     </tr>`);
@@ -91,6 +101,42 @@ function filterLinks() {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function filterUnread() {
+  let table, tr, td, unread, i;
+  table = document.getElementById("the-table");
+  tr = table.getElementsByTagName("tr");
+  unread = "Read?: true";
+
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.includes(unread)) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function filterRead() {
+  let table, tr, td, read, i;
+  table = document.getElementById("the-table");
+  tr = table.getElementsByTagName("tr");
+  read = "Read?: false";
+
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.includes(read)) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";

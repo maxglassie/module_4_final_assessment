@@ -1,15 +1,15 @@
 $( document ).ready(function(){
-  $("body").on("click", ".mark-as-read", markAsRead)
+  $("body").on("click", ".mark-as-unread", markAsUnread)
 })
 
-function markAsRead(e) {
+function markAsUnread(e) {
   e.preventDefault();
   var linkId = $(this).parents('tr').data('id');
 
   $.ajax({
     type: "PATCH",
     url: "/api/v1/links/" + linkId,
-    data: { read: true },
+    data: { read: false },
   }).then(updateLinkStatus)
     .fail(displayFailure);
 }
