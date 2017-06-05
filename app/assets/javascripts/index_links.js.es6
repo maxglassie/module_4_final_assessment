@@ -12,7 +12,6 @@ $(document).ready(function() {
 
   $('#link-submit').on('click', (e) => {
     e.preventDefault()
-    debugger;
     let linkURL = $('#link-url').val();
     let linkTitle = $('#link-title').val();
     saveLink(linkURL, linkTitle)
@@ -46,4 +45,16 @@ function saveLink(url, title) {
   .then((data) => {
     prependLink(data)
   })
+  .fail((xhr, status, error) => {
+    raiseErrors(xhr, status, error)
+  })
+}
+
+function raiseErrors(xhr, status, error) {
+  if (xhr.responseJSON[0] == "Url can't be blank") {
+    $('.title-field').append(`<div class="validation-error"><p> ${xhr.responseJSON[0]} </p> </div>`)
+  }
+  if (xhr.responseJSON[0] == "Title can't be blank") {
+    $('.title-field').append(`<div class="validation-error"><p> ${xhr.responseJSON[0]} </p> </div>`)
+  }
 }

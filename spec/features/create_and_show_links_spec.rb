@@ -26,4 +26,17 @@ RSpec.describe "User can visit the index page", :js => :true do
     expect(page).to have_content("https://www.google.com")
     expect(page).to have_content("Google")
   end
+
+  scenario "and submit a link and title" do
+    visit "/"
+
+    within('#link-create') do
+        fill_in "link-url", with: "https://www.google.com"
+        click_on("Add Link")
+    end
+
+    expect(current_path).to eq('/')
+
+    expect(page).to have_content("Url can't be blank")
+  end
 end
