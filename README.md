@@ -4,7 +4,18 @@
 
 The URLockbox is a starter app for the final assessment for module 4 of the backend engineering program at Turing School of Software and Design.
 
-Be sure to get familiar with what is already done, and what is not. No features are complete, but there is some set up done for several features. Use commit history if that helps.
+Max Glassie did this particular final assessment. The final production link on Heroku is here: (https://salty-peak-54308.herokuapp.com/login)
+
+*A broad overview of features:*
+- The application enables the authentication and authorization of users (you can create an account and login)
+- Once logged in, a user can create links and add them to their list.
+- Users can filter their lists by their title and their "read" or "unread" status.
+- When a user marks their link as read, it sends a POST request to the companion application, Hot Reads, at this URL (https://arcane-eyrie-99827.herokuapp.com/) where it is ranked against all the URLs that have been submitted and displayed on the main page.
+- The Hot Reads app communicates with this main app to indicate whether or not the link is the "Top Link" or within the top ten ("Hot")
+- The application has wonderful error handling, including a custom validation for whether or not the URL is a valid URL. 
+- The main application is a Rails application which incorporates significant JS to handle front end actions. The companion app is just plain Rails. 
+
+# Running the Application Locally
 
 ### Testing your JS with Selenium
 
