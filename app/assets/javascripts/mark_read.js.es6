@@ -28,7 +28,7 @@ function displayFailure(failureData){
 function sendToHotReads(link) {
   $.ajax({
     type: "POST",
-    url: "http://localhost:4000/api/v1/links",
+    url: "https://arcane-eyrie-99827.herokuapp.com/api/v1/links",
     data: {origin_id: link.id, url: link.url, read: link.read}
   }).then((data) => {
     if (data.number_one == true) {

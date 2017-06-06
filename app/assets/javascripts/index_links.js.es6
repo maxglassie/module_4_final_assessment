@@ -37,17 +37,17 @@ function prependLink(data) {
     <td id='link-url'> URL: ${data.url} </td>
     <td id='link-read'> Read?: ${data.read} </td>
     <td id='link-edit'>
-        <form action="http://localhost:3000/links/${data.id}/edit">
+        <form action="https://salty-peak-54308.herokuapp.com/links/${data.id}/edit">
             <input type="submit" value="Edit">
         </form>
      </td>
     <td id='mark-read'>
-        <form class="mark-as-read" action="http://localhost:3000/api/v1/links/${data.id}">
+        <form class="mark-as-read" action="https://salty-peak-54308.herokuapp.com/api/v1/links/${data.id}">
             <input type="submit" value="Mark As Read">
         </form>
      </td>
       <td id='mark-unread'>
-        <form class="mark-as-unread" action="http://localhost:3000/api/v1/links/${data.id}">
+        <form class="mark-as-unread" action="https://salty-peak-54308.herokuapp.com/api/v1/links/${data.id}">
             <input type="submit" value="Mark As Unread">
         </form>
      </td>
@@ -56,7 +56,7 @@ function prependLink(data) {
 
 function saveLink(url, title) {
   let newLink = new Link(url, title)
-  $.post('http://localhost:3000/api/v1/links', newLink)
+  $.post('https://salty-peak-54308.herokuapp.com/api/v1/links', newLink)
   .then((data) => {
     prependLink(data)
     clearErrors();

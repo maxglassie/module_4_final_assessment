@@ -10,7 +10,10 @@ function markAsUnread(e) {
     type: "PATCH",
     url: "/api/v1/links/" + linkId,
     data: { read: false },
-  }).then(updateLinkStatus)
+  }).then((link) => {
+    updateLinkStatus(link);
+    sendToHotReads(link);
+  })
     .fail(displayFailure);
 }
 
@@ -20,4 +23,18 @@ function updateLinkStatus(link) {
 
 function displayFailure(failureData){
   console.log("FAILED attempt to update Link: " + failureData.responseText);
+}
+
+function sendToHotReads(link) {
+  $.ajax({
+    type: "POST",
+    url: "https://arcane-eyrie-99827.herokuapp.com/api/v1/links",
+    data: {origin_id: link.id, url: link.url, read: link.read}
+  }).then((data) => {
+    if (data.number_one == true) {
+      $(`.link-row[data-id=${data.origin_id}]`).append("TOP LINK")
+    } else if (data.top_ten == true) {
+      $(`.link-row[data-id=${data.origin_id}]`).append("HOT!")
+    };
+  })
 }
